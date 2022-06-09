@@ -10,12 +10,12 @@ import (
 func main() {
 	repository := buyer.NewRepository()
 	service := buyer.NewService(repository)
-	controller := controllers.NewBuyer(service)
+	controller := controllers.NewBuyers(service)
 
 	r := gin.Default()
-	buyers := r.Group("/buyers")
-	buyers.POST("/", controller.Store())
-	buyers.GET("/", controller.GetAll())
+	buyer := r.Group("/buyers")
+	buyer.POST("/", controller.Store())
+	buyer.GET("/", controller.GetAll())
 
 	r.Run()
 }

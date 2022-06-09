@@ -2,7 +2,7 @@ package buyer
 
 type Service interface {
 	GetAll() ([]Buyer, error)
-	Store(cardNumber int64, firstName, lastName string)
+	Store(cardNumber int64, firstName string, lastName string) (Buyer, error)
 	//LastId() int64
 }
 
@@ -19,7 +19,7 @@ func (s *service) GetAll() ([]Buyer, error) {
 	return b, nil
 }
 
-func (s *service) Store(cardNumber int64, firstName, lastName string) (Buyer, error) {
+func (s *service) Store(cardNumber int64, firstName string, lastName string) (Buyer, error) {
 	lastId, err := s.repository.LastId()
 	if err != nil {
 		return Buyer{}, err

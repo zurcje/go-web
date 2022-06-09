@@ -1,24 +1,25 @@
 package controllers
 
 import (
+	"go-web/internal/domains/buyer"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 type request struct {
-	CardNumber int64  `json: "card_number"`
-	FirstName  string `json:"first_name"`
-	LasttName  string `json:"last_name"`
+	CardNumber int64  `json: "cardNumber"`
+	FirstName  string `json:"firstName"`
+	LastName   string `json:"lastName"`
 }
 
 type Buyer struct {
-	service buyers.Service
+	service buyer.Service
 }
 
-func NewBuyer(b buyers.Service) *Buyer {
+func NewBuyers(newBuyer buyer.Service) *Buyer {
 	return &Buyer{
-		service: NewBuyer,
+		service: newBuyer,
 	}
 }
 
@@ -32,14 +33,14 @@ func (c *Buyer) GetAll() gin.HandlerFunc {
 			return
 		}
 
-		b, err := c.service.GetAll()
+		newBuyer, err := c.service.GetAll()
 		if err != nil {
 			ctx.JSON(http.StatusNotFound, gin.H{
 				"error": err.Error(),
 			})
 			return
 		}
-		ctx.JSON(http.StatusOK, b)
+		ctx.JSON(http.StatusOK, newBuyer)
 
 	}
 }
@@ -60,12 +61,12 @@ func (c *Buyer) Store() gin.HandlerFunc {
 			return
 
 		}
-		b, err := c.service.Store(req.CardNumber, req.FirstName, req.LasttName)
+		newBuyer, err := c.service.Store(req.CardNumber, req.FirstName, req.LastName)
 		if err != nil {
 			ctx.JSON(http.StatusNotFound, gin.H{
 				"error": err.Error()})
 			return
 		}
-		ctx.JSON(http.StatusOK, b)
+		ctx.JSON(http.StatusOK, newBuyer)
 	}
 }
