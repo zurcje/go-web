@@ -11,6 +11,7 @@ type service struct {
 }
 
 func (s *service) GetAll() ([]Buyer, error) {
+
 	b, err := s.repository.GetAll()
 	if err != nil {
 		return nil, err

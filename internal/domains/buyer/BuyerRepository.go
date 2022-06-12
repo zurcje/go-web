@@ -1,5 +1,7 @@
 package buyer
 
+import "go-web/internal/domains/file"
+
 var b []Buyer
 var lastId int64
 
@@ -9,10 +11,18 @@ type Repository interface {
 	LastId() (int64, error)
 }
 
-type repository struct{}
+type repository struct {
+	db file.Store
+}
 
 func (r *repository) GetAll() ([]Buyer, error) {
-	return b, nil
+
+	var buyers []Buyer
+	if err := r.db.Read(&buyers); err != nil {
+		return []Buyer{}, err
+	}
+
+	return buyers, nil
 }
 
 func (r *repository) LastId() (int64, error) {
@@ -26,6 +36,8 @@ func (r *repository) Store(id int64, cardNumber int64, firstName string, lastNam
 	return newBuyer, nil
 }
 
-func NewRepository() Repository {
-	return &repository{}
+func NewRepository(db file.Store) Repository {
+	return &repository{
+		db: db,
+	}
 }

@@ -3,12 +3,16 @@ package main
 import (
 	"go-web/controllers"
 	"go-web/internal/domains/buyer"
+	"go-web/internal/domains/file"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	repository := buyer.NewRepository()
+
+	db := file.New(file.FileType, "../../buyer.json")
+
+	repository := buyer.NewRepository(db)
 	service := buyer.NewService(repository)
 	controller := controllers.NewBuyers(service)
 
