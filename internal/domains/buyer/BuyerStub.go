@@ -20,9 +20,9 @@ func (c StubSearchBuyer) SearchTestAll() []Buyer {
 	//array de buyers
 	var buyers []Buyer = []Buyer{}
 
-	buyers = append(buyers, Buyer{Id: 1, CardNumber: 123456, FirstName: "Zessica", LasttName: "Cuiz Cruiz"})
-	buyers = append(buyers, Buyer{Id: 2, CardNumber: 654321, FirstName: "Heymer", LasttName: "Birrto"})
-	buyers = append(buyers, Buyer{Id: 3, CardNumber: 456321, FirstName: "Figura", LasttName: "Album"})
+	buyers = append(buyers, Buyer{Id: 1, CardNumber: 123456, FirstName: "Jessica", LasttName: "Cruz"})
+	buyers = append(buyers, Buyer{Id: 2, CardNumber: 654321, FirstName: "Reimer", LasttName: "Birro"})
+	buyers = append(buyers, Buyer{Id: 3, CardNumber: 456321, FirstName: "Manu", LasttName: "Moreira"})
 
 	return buyers
 }

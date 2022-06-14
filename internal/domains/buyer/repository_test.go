@@ -26,11 +26,11 @@ func TestGetAllMock(t *testing.T) {
 	var buyers []Buyer = []Buyer{}
 
 	//0
-	buyers = append(buyers, Buyer{Id: 1, CardNumber: 123456, FirstName: "Zessica", LasttName: "Cuiz Cruiz"})
+	buyers = append(buyers, Buyer{Id: 1, CardNumber: 123456, FirstName: "Jessica", LasttName: "Cruz"})
 	//1
-	buyers = append(buyers, Buyer{Id: 2, CardNumber: 654321, FirstName: "Heymer", LasttName: "Birrto"})
+	buyers = append(buyers, Buyer{Id: 2, CardNumber: 654321, FirstName: "Reimer", LasttName: "Birro"})
 	//2
-	buyers = append(buyers, Buyer{Id: 3, CardNumber: 456321, FirstName: "Figura", LasttName: "Album"})
+	buyers = append(buyers, Buyer{Id: 3, CardNumber: 456321, FirstName: "Manu", LasttName: "Moreira"})
 
 	dataJson, _ := json.Marshal(buyers)
 
@@ -45,6 +45,6 @@ func TestGetAllMock(t *testing.T) {
 	resp, _ := myRepo.GetAll()
 
 	assert.Equal(t, int64(2), resp[1].Id)
-	assert.Equal(t, "Figura", resp[2].FirstName)
-	assert.Equal(t, "Cuiz Cruiz", resp[0].LasttName)
+	assert.Equal(t, "Manu", resp[2].FirstName)
+	assert.Equal(t, "Cruz", resp[0].LasttName)
 }
